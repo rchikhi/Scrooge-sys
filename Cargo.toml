@@ -1,0 +1,12 @@
+[package]
+name = "Scrooge-sys"
+version = "0.1.0"
+edition = "2021"
+links = "scrooge"
+build = "build.rs"
+authors = ["Rayan Chikhi <rchikhi@pasteur.fr>"]
+repository = "https://github.com/rchikhi/Scrooge-sys"
+description = "Rust bindings for the Scrooge CPU sequence alignment library"
+license = "MIT"
+
+[dependencies]

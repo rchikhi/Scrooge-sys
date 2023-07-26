@@ -22,7 +22,7 @@ fn main() {
 
     Command::new("sh")
             .arg("-c")
-            .arg("echo ' $(CXX) -c $(SRC)/genasm_cpu.cpp  $(CXX_FLAGS) -lpthread -lstdc++fs -fopenmp' >> Makefile")
+            .arg("echo '    $(CXX) -c $(SRC)/genasm_cpu.cpp  $(CXX_FLAGS) -lpthread -lstdc++fs -fopenmp' >> Makefile")
             .current_dir(&c_src_path)
             .output()
             .unwrap();

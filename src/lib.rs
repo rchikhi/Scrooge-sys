@@ -796,15 +796,19 @@ pub type mbstate_t = __mbstate_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct genasm_cpu_bitvector {
-    pub element: u64,
+    elements: [u64; 1],
+    bits: usize,
+    n_elements: usize,
 }
-extern "C" {
-    #[link_name = "\u{1}_ZN10genasm_cpu9bitvector4bitsE"]
-    pub static genasm_cpu_bitvector_bits: ::std::os::raw::c_int;
-}
-extern "C" {
-    #[link_name = "\u{1}_ZN10genasm_cpu9bitvector10n_elementsE"]
-    pub static genasm_cpu_bitvector_n_elements: ::std::os::raw::c_int;
+
+impl Default for genasm_cpu_bitvector {
+    fn default() -> Self {
+        Self {
+            elements: [0; 1],
+            bits: 64,
+            n_elements: 1,
+        }
+    }
 }
 #[test]
 fn bindgen_test_layout_genasm_cpu_bitvector() {
@@ -821,7 +825,7 @@ fn bindgen_test_layout_genasm_cpu_bitvector() {
         concat!("Alignment of ", stringify!(genasm_cpu_bitvector))
     );
     assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).element) as usize - ptr as usize },
+        unsafe { ::std::ptr::addr_of!((*ptr).elements) as usize - ptr as usize },
         0usize,
         concat!(
             "Offset of field: ",

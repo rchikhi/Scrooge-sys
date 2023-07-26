@@ -13,14 +13,16 @@ fn main() {
         .output()
         .expect("Failed to backup Scrooge makefile.");
 
-    Command::new("echo")
-            .arg("'genasm_cpu: $(SRC)/genasm_cpu.cpp' >> Makefile")
+    Command::new("sh")
+            .arg("-c")
+            .arg("echo 'genasm_cpu: $(SRC)/genasm_cpu.cpp' >> Makefile")
             .current_dir(&c_src_path)
             .output()
             .unwrap();
 
-    Command::new("echo")
-            .arg("' $(CXX) -c $(SRC)/genasm_cpu.cpp  $(CXX_FLAGS) -lpthread -lstdc++fs -fopenmp' >> Makefile")
+    Command::new("sh")
+            .arg("-c")
+            .arg("echo ' $(CXX) -c $(SRC)/genasm_cpu.cpp  $(CXX_FLAGS) -lpthread -lstdc++fs -fopenmp' >> Makefile")
             .current_dir(&c_src_path)
             .output()
             .unwrap();

@@ -27,22 +27,20 @@ fn main() {
 
     // build the library
     Command::new("make")
+        .arg("genasm_cpu")
         .current_dir(&c_src_path)
         .output()
         .expect("Failed to build genasm_cpu.");
 
-    //println!("ls {:?}",String::from_utf8(Command::new("ls").current_dir(&c_src_path).output().unwrap().stdout));
+    //eprintln!("ls {:?}",String::from_utf8(Command::new("ls").current_dir(&c_src_path).output().unwrap().stdout));
 
-    let files = "genasm_cpu.o";
-    for file in files.split(" ")
-    {
-        Command::new("cp")
-            .arg(file)
-            .arg(&out_dir)
-            .current_dir(&c_src_path)
-            .output()
-            .expect("Failed to copy scrooge object files.");
-    }
+    let file= "genasm_cpu.o";
+    Command::new("cp")
+        .arg(file)
+        .arg(&out_dir)
+        .current_dir(&c_src_path)
+        .output()
+        .expect("Failed to copy scrooge object files.");
 
     // package all .o files into a static library
     Command::new("sh")

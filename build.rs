@@ -68,4 +68,5 @@ fn main() {
     // let cargo know that it can find the file in the out directory
     println!("cargo:rustc-link-search=native={}", out_dir);
     println!("cargo:rustc-link-lib=static=scrooge");
+    println!("cargo:rustc-link-lib=dylib=stdc++");
 }
